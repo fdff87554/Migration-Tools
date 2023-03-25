@@ -101,8 +101,6 @@
   * https://docs.liquibase.com/concepts/changelogs/attributes/labels.html
   * https://docs.liquibase.com/concepts/changelogs/sql-format.html
 
-### Write changeset
-
 ## Workflow / 工作流程
 * Step 1: Create a changelog / 建立一個 changelog
   * 依照上面的說明，在目錄結構中，我們需要建立一個 `changelog` 的目錄，並且在裡面建立一個 `changelog.<type>` 的文件。
@@ -119,6 +117,29 @@
   * 可以利用 `status` 指令，來查看尚未被執行的 changesets。
   * 可以利用 `diff` 指令，來查看兩個資料庫之間的差異。
   * 直接訪問 DBMS，查看資料庫的變更。
+
+## Commands / 指令
+* `generateChangeLog` / 產生變更日誌
+  * 產生變更日誌，並且將變更寫入到資料庫中。
+  * Example:
+    > ```bash=
+    > $ liquibase --changeLogFile=changelog.<type>.sql generateChangeLog
+    > ```
+    > * 會將變更寫入到 `changelog.<type>.sql` 中。
+* `update` / 更新資料庫
+  * 更新資料庫，並且將變更寫入到資料庫中。
+  * Example:
+    > ```bash=
+    > $ liquibase --changeLogFile=changelog.<type>.sql update
+    > ```
+    > * 會將 changelog file 中尚未被執行的變更寫入到資料庫中。
+* `updateSQL` / 驗證 SQL
+  * 檢查變更日誌，但不會寫入到資料庫中。
+  * Example:
+    > ```bash=
+    > $ liquibase --changeLogFile=changelog.<type>.sql updateSQL
+    > ```
+    > * 會將 changelog file 中尚未被執行的變更，並且顯示出來。
 
 
 ## Refs
