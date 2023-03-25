@@ -1,5 +1,5 @@
 #!/bin/sh
-# This script will install liquibase on linux
+# This script will install liquibase on linux (Debian/Ubuntu)
 
 # Setup Variables for Java-Version & Liquibase-Version
 java_version="17"
