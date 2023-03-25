@@ -58,21 +58,68 @@
     >         └── ...
     > ```
 
+### Write changeset / 寫變更
+* `changeset` 是我們用來記錄關於資料庫變更的單位，所有我們希望資料庫做的變更都會被紀錄成一組 `changeset`。
+* 每一個 `changeset` 由 `id`、`author`、`changes` 這三個部分組成，其中 `id` 跟 `author` 組成對於 changeset 的唯一識別符號。
+  * 請注意，`id` 只是一個識別符號，並不代表運行順序，也不一定要是整數。
+  * 運行的前後關聯性依據為 `preconditions`、`contexts`、`labels` 和其他屬性來運行。
+* Examples:
+  * SQL:
+    ```sql=
+    --changeset test_name:1
+    create table company (
+      id int primary key,
+      address varchar(255)
+    );
+    ```
+  * YAML:
+    ```yaml=
+    databaseChangeLog:
+      - changeSet:
+        id: 1
+        author: test_name
+        changes:
+          - createTable:
+              tableName: company
+              columns:
+                - column:
+                    name: id
+                    type: int
+                    constraints:
+                      primaryKey: true
+                      nullable: false
+                - column:
+                    name: address
+                    type: varchar(255)
+                    constraints:
+                      nullable: false
+    ```
+* Refs:
+  * https://docs.liquibase.com/concepts/changelogs/changeset.html
+  * https://docs.liquibase.com/concepts/changelogs/preconditions.html
+  * https://docs.liquibase.com/concepts/changelogs/attributes/contexts.html
+  * https://docs.liquibase.com/concepts/changelogs/attributes/labels.html
+  * https://docs.liquibase.com/concepts/changelogs/sql-format.html
+
 ### Write changeset
 
 ## Workflow / 工作流程
 * Step 1: Create a changelog / 建立一個 changelog
+  * 依照上面的說明，在目錄結構中，我們需要建立一個 `changelog` 的目錄，並且在裡面建立一個 `changelog.<type>` 的文件。
 * Step 2: Add your changesets to a changelog / 將你的變更加入到 changelog 中
+  * 在 `changelog.<type>` 中，加入對應的 `changeset` 操作。
 * Step 3: Verify the SQL that you will execute / 驗證你將要執行的 SQL
+  * 利用 `updateSQL` 指令，可以驗證你將要執行的 SQL。
 * Step 4: Save your changelog to your source control / 將你的 changelog 儲存到你的 source control
+  * 利用 git 等 source control 工具，將你的 `changelog.<type>` 儲存起來。
 * Step 5: Run the database update command / 執行資料庫更新的指令
+  * 利用 `update` 指令，執行你的 `changelog.<type>`，並且將變更寫入到資料庫中。
 * Step 6: Verify that the changeset or changesets were executed / 驗證變更是否被執行
+  * 可以利用 `history` 指令，來查看已經被執行的 changesets。
+  * 可以利用 `status` 指令，來查看尚未被執行的 changesets。
+  * 可以利用 `diff` 指令，來查看兩個資料庫之間的差異。
+  * 直接訪問 DBMS，查看資料庫的變更。
 
-### Step 1: Create a changelog / 建立一個 changelog
-* 依照上面的說明，在目錄結構中，我們需要建立一個 `changelog` 的目錄，並且在裡面建立一個 `changelog.<type>` 的文件。
-
-### Step 2: Add your changesets to a changelog / 將你的變更加入到 changelog 中
-* 在
 
 ## Refs
 * 關於 JDBC 的連結，可以參考 [Using JDBC URL in Liquibase](https://docs.liquibase.com/workflows/liquibase-community/using-jdbc-url-in-liquibase.html)
