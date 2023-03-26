@@ -14,8 +14,8 @@
 
 ## Installation / 安裝
 * Liquibase 在使用的過程中會需要 `java` 環境，所以在安裝 Liquibase 之前，請先確認你的系統有安裝 `java`。
-* 安裝 Liquibase 的流程有些複雜，且不同的作業系統安裝方式也不同，這邊先準備了一份 `Debian / Ubuntu` 的安裝 shell script，可以直接執行 `debain_ubuntu.sh` 來安裝 Liquibase。
-  > * 相關安裝說明請參考 `debain_ubuntu.sh` 的註解。
+* 安裝 Liquibase 的流程有些複雜，且不同的作業系統安裝方式也不同，這邊先準備了一份 `Debian / Ubuntu` 的安裝 shell script，可以直接執行 `debian_ubuntu.sh` 來安裝 Liquibase。
+  > * 相關安裝說明請參考 `debian_ubuntu.sh` 的註解。
 
 ## Usage / 使用
 * 要使用 Liquibase 來管理資料庫的變更，我們需要先準備好 `liquibase.properties` 跟 `changelog.<type>` 這兩個文件。
@@ -31,11 +31,11 @@
 * 那 Liquibase 也是一樣，我們需要告訴 Liquibase 這些資訊，所以我們需要準備一個 `liquibase.properties` 來記錄這些資訊。
 * 在 `liquibase.properties` 這份檔案中，
   * `changeLogFile` - 記錄我們操作的資料庫行為的檔案，這個檔案會在後面的章節中說明。
-  * `liquibase.command.url` - 要操作的資料庫，他會是一個 `jdbc` 的連結。
+  * `liquibase.command.url` - 要操作的資料庫，他會是一個 `JDBC` 的連結。
   * `liquibase.command.username` - 要使用的操作使用者名稱。
   * `liquibase.command.password` - 要使用的操作使用者密碼。
 * 有上述這些資訊後，我們就可以開始使用 Liquibase 來管理資料庫的變更了，而有些其他的設定可以幫我們做到一些比較，分別有
-  * `liquibase.command.referenceUrl` - 要比較的資料庫，他會是一個 `jdbc` 的連結，當使用 `diff/diffchangelog` 指令時，會用來比較兩個資料庫的差異。
+  * `liquibase.command.referenceUrl` - 要比較的資料庫，他會是一個 `JDBC` 的連結，當使用 `diff/diffchangelog` 指令時，會用來比較兩個資料庫的差異。
   * `liquibase.command.referenceUsername` - 要比較的資料庫的使用者名稱。
   * `liquibase.command.referencePassword` - 要比較的資料庫的使用者密碼。
 * 有上述所有的設定後，基本上 Liquibase 的相關 commands 都可以使用了。
