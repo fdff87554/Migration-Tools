@@ -27,3 +27,13 @@ else
     rm flyway-commandline-"$flyway_version"-linux-x64.tar.gz
     sudo ln -s /opt/flyway/flyway-"$flyway_version"/flyway /usr/local/bin/flyway
 fi
+
+# Copy Flyway Examples to Home Directory
+if [ -d "$HOME/flyway" ]; then
+    echo "Flyway Examples are already installed"
+else
+    echo "Copying Flyway Examples"
+    mkdir "$HOME/flyway"
+    cd "$HOME/flyway" || exit
+    sudo cp -r /opt/flyway/flyway-"$flyway_version" .
+fi
