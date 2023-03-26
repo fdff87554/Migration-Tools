@@ -4,13 +4,16 @@
 # Setup Variables for Java-Version & Liquibase-Version
 java_version="17"
 liquibase_version="4.20.0"
-liquibase_url="https://github.com/liquibase/liquibase/releases/download/v4.20.0/liquibase-4.20.0.tar.gz"
+liquibase_url="https://github.com/liquibase/liquibase/releases/download/v$liquibase_version/liquibase-$liquibase_version.tar.gz"
+echo "Java Version: $java_version"
+echo "Liquidbase Version: $liquibase_version"
+echo "Liquidbase URL: $liquibase_url"
 
 # Initialize Environment
 sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y
 
 # Install Necessary Packages
-sudo apt install vim -y
+sudo apt install git vim -y
 # Install Java 17 (Java is required for Liquibase)
 sudo apt install openjdk-"$java_version"-jdk -y
 
@@ -27,4 +30,3 @@ else
     rm liquibase-"$liquibase_version".tar.gz
     sudo ln -s /opt/liquibase/liquibase /usr/local/bin/liquibase
 fi
-
