@@ -1,5 +1,6 @@
 #!/bin/sh
 # This script will install flyway on linux (Debian/Ubuntu)
+# The flyway download is from https://flywaydb.org/download/community
 
 # Setup Variables for Flyway-Version
 flyway_version="9.16.1"
